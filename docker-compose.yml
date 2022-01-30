@@ -1,0 +1,36 @@
+version: '2.3'
+
+services:
+  practice-database-configuration:
+    container_name: flyway-migrations
+    command: migrate
+    depends_on:
+      practice-database:
+        condition: service_healthy
+    environment:
+      FLYWAY_CONFIG_FILES: /flyway/conf/flyway.conf
+      FLYWAY_LOCATIONS: filesystem:/sql
+      FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_ADMIN_PASSWORD: patient_service_admin
+      FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RO_PASSWORD: patient_service_ro
+      FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RW_PASSWORD: patient_service_rw
+    image: flyway/flyway
+    volumes:
+        - ./flyway/sql:/sql
+        - ./flyway/conf:/flyway/conf
+
+  practice-database:
+    image: postgres:12.9
+    container_name: practice-database
+    environment:
+      POSTGRES_DB: practice
+      POSTGRES_USER: practice_admin
+      POSTGRES_PASSWORD: practice_admin
+    healthcheck:
+      interval: 15s
+      retries: 5
+      start_period: 5s
+      test: [ "CMD-SHELL", "/usr/lib/postgresql/12/bin/pg_isready --username practice_admin --dbname practice" ]
+      timeout: 5s
+    ports:
+      - 5432:5432
+    restart: always
