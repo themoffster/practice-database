@@ -13,6 +13,9 @@ services:
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_ADMIN_PASSWORD: patient_service_admin
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RO_PASSWORD: patient_service_ro
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RW_PASSWORD: patient_service_rw
+      FLYWAY_PLACEHOLDERS_PRACTICE_WEBAPP_BFF_ADMIN_PASSWORD: practice_webapp_bff_admin
+      FLYWAY_PLACEHOLDERS_PRACTICE_WEBAPP_BFF_RO_PASSWORD: practice_webapp_bff_ro
+      FLYWAY_PLACEHOLDERS_PRACTICE_WEBAPP_BFF_RW_PASSWORD: practice_webapp_bff_rw
     image: flyway/flyway
     volumes:
         - ./flyway/sql:/sql
