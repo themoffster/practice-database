@@ -10,6 +10,9 @@ services:
     environment:
       FLYWAY_CONFIG_FILES: /flyway/conf/flyway.conf
       FLYWAY_LOCATIONS: filesystem:/sql
+      FLYWAY_PLACEHOLDERS_APPOINTMENT_SERVICE_ADMIN_PASSWORD: appointment_service_admin
+      FLYWAY_PLACEHOLDERS_APPOINTMENT_SERVICE_RO_PASSWORD: appointment_service_ro
+      FLYWAY_PLACEHOLDERS_APPOINTMENT_SERVICE_RW_PASSWORD: appointment_service_rw
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_ADMIN_PASSWORD: patient_service_admin
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RO_PASSWORD: patient_service_ro
       FLYWAY_PLACEHOLDERS_PATIENT_SERVICE_RW_PASSWORD: patient_service_rw
